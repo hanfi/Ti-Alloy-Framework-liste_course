@@ -1,21 +1,27 @@
 ".container": {
 	backgroundColor:"white"
 },
-"#add": {
+"#itemField": {
 	top:0,
 	width: Ti.UI.SIZE,
-	height: 50,
+	height: 20,
+	color: "#000"
+},
+"#add": {
+	top:50,
+	width: Ti.UI.SIZE,
+	height: 20,
 	color: "#000"
 },
 "#list": {
-	top:50,
+	top:100,
 	width: Ti.UI.SIZE,
-	height: 50,
+	height: 20,
 	color: "#000"
 },
 "#clear": {
-	top:100,
+	top:150,
 	width: Ti.UI.SIZE,
-	height: 50,
+	height: 20,
 	color: "#000"
 } 

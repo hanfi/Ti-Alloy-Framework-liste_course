@@ -1,7 +1,8 @@
 <Alloy>
 	<Window class="container">
-		<Label id="add" onClick="doAddItem">add item</Label>
-		<Label id="list" onClick="doShowList">show list</Label>
-		<Label id="clear" onClick="doClear">clear DB</Label>
+		<TextField id="itemField" hintText="Ajouter un element ?"></TextField>
+		<Button id="add" onClick="doAddItem">add item</Button>
+		<Button id="list" onClick="doShowList">show list</Button>
+		<Button id="clear" onClick="doClear">clear DB</Button>
 	</Window>
 </Alloy>

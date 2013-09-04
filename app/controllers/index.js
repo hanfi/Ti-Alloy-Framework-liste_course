@@ -1,9 +1,10 @@
 function doAddItem(e){
 	var data = {
-	"libelle": "acheter un teapot",
+	"libelle": $.itemField.value,
 	"done": false};
 	var tache = Alloy.createModel('tache', data);
 	tache.save();
+	alert($.itemField.value+" has been added");
 }
 
 
@@ -11,8 +12,9 @@ function doAddItem(e){
 function doShowList(e) {
 	var taches = Alloy.createCollection('tache'); 
 	taches.fetch();
-
-    alert(JSON.stringify(taches));
+	taches.each(function(tache){
+		alert('la tache '+tache.get('libelle')+' est '+ (tache.get('done')?'faite':'en cours'));
+	});
 }
 
 

@@ -1,16 +1,19 @@
 function Controller() {
     function doAddItem() {
         var data = {
-            libelle: "acheter un teapot",
+            libelle: $.itemField.value,
             done: false
         };
         var tache = Alloy.createModel("tache", data);
         tache.save();
+        alert($.itemField.value + " has been added");
     }
     function doShowList() {
         var taches = Alloy.createCollection("tache");
         taches.fetch();
-        alert(JSON.stringify(taches));
+        taches.each(function(tache) {
+            alert("la tache " + tache.get("libelle") + " est " + (tache.get("done") ? "faite" : "en cours"));
+        });
     }
     function doClear() {
         var taches = Alloy.createCollection("tache");
@@ -31,32 +34,41 @@ function Controller() {
         id: "index"
     });
     $.__views.index && $.addTopLevelView($.__views.index);
-    $.__views.add = Ti.UI.createLabel({
+    $.__views.itemField = Ti.UI.createTextField({
         top: 0,
         width: Ti.UI.SIZE,
-        height: 50,
+        height: 20,
         color: "#000",
-        text: "add item",
+        id: "itemField",
+        hintText: "Ajouter un element ?"
+    });
+    $.__views.index.add($.__views.itemField);
+    $.__views.add = Ti.UI.createButton({
+        top: 50,
+        width: Ti.UI.SIZE,
+        height: 20,
+        color: "#000",
+        title: "add item",
         id: "add"
     });
     $.__views.index.add($.__views.add);
     doAddItem ? $.__views.add.addEventListener("click", doAddItem) : __defers["$.__views.add!click!doAddItem"] = true;
-    $.__views.list = Ti.UI.createLabel({
-        top: 50,
+    $.__views.list = Ti.UI.createButton({
+        top: 100,
         width: Ti.UI.SIZE,
-        height: 50,
+        height: 20,
         color: "#000",
-        text: "show list",
+        title: "show list",
         id: "list"
     });
     $.__views.index.add($.__views.list);
     doShowList ? $.__views.list.addEventListener("click", doShowList) : __defers["$.__views.list!click!doShowList"] = true;
-    $.__views.clear = Ti.UI.createLabel({
-        top: 100,
+    $.__views.clear = Ti.UI.createButton({
+        top: 150,
         width: Ti.UI.SIZE,
-        height: 50,
+        height: 20,
         color: "#000",
-        text: "clear DB",
+        title: "clear DB",
         id: "clear"
     });
     $.__views.index.add($.__views.clear);
