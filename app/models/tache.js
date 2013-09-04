@@ -1,7 +1,7 @@
 exports.definition = {
 	config: {
 		columns: {
-		    "libelle": "string",
+		    "label": "string",
 		    "done": "boolean"
 		},
 		adapter: {

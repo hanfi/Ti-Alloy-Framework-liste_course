@@ -1,6 +1,6 @@
 function doAddItem(e){
 	var data = {
-	"libelle": $.itemField.value,
+	"label": $.itemField.value,
 	"done": false};
 	var tache = Alloy.createModel('tache', data);
 	tache.save();
@@ -13,7 +13,7 @@ function doShowList(e) {
 	var taches = Alloy.createCollection('tache'); 
 	taches.fetch();
 	taches.each(function(tache){
-		alert('la tache '+tache.get('libelle')+' est '+ (tache.get('done')?'faite':'en cours'));
+		alert('la tache '+tache.get('label')+' est '+ (tache.get('done')?'faite':'en cours'));
 	});
 }
 
