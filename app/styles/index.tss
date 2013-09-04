@@ -1,8 +1,21 @@
 ".container": {
 	backgroundColor:"white"
 },
-"Label": {
+"#add": {
+	top:0,
 	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
+	height: 50,
+	color: "#000"
+},
+"#list": {
+	top:50,
+	width: Ti.UI.SIZE,
+	height: 50,
+	color: "#000"
+},
+"#clear": {
+	top:100,
+	width: Ti.UI.SIZE,
+	height: 50,
 	color: "#000"
 } 

@@ -1,9 +1,8 @@
 exports.definition = {
 	config: {
 		columns: {
-		    "id": "string",
 		    "libelle": "string",
-		    "done": "string"
+		    "done": "boolean"
 		},
 		adapter: {
 			type: "sql",
