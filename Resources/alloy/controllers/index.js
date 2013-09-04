@@ -30,23 +30,23 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.index = Ti.UI.createWindow({
-        backgroundColor: "white",
+        backgroundColor: "#FFF",
         id: "index"
     });
     $.__views.index && $.addTopLevelView($.__views.index);
     $.__views.itemField = Ti.UI.createTextField({
-        top: 0,
+        top: "0dp",
         width: Ti.UI.SIZE,
-        height: 20,
+        height: Ti.UI.SIZE,
         color: "#000",
         id: "itemField",
         hintText: "Ajouter un element ?"
     });
     $.__views.index.add($.__views.itemField);
     $.__views.add = Ti.UI.createButton({
-        top: 50,
+        top: "50dp",
         width: Ti.UI.SIZE,
-        height: 20,
+        height: Ti.UI.SIZE,
         color: "#000",
         title: "add item",
         id: "add"
@@ -54,9 +54,9 @@ function Controller() {
     $.__views.index.add($.__views.add);
     doAddItem ? $.__views.add.addEventListener("click", doAddItem) : __defers["$.__views.add!click!doAddItem"] = true;
     $.__views.list = Ti.UI.createButton({
-        top: 100,
+        top: "100dp",
         width: Ti.UI.SIZE,
-        height: 20,
+        height: Ti.UI.SIZE,
         color: "#000",
         title: "show list",
         id: "list"
@@ -64,9 +64,9 @@ function Controller() {
     $.__views.index.add($.__views.list);
     doShowList ? $.__views.list.addEventListener("click", doShowList) : __defers["$.__views.list!click!doShowList"] = true;
     $.__views.clear = Ti.UI.createButton({
-        top: 150,
+        top: "150dp",
         width: Ti.UI.SIZE,
-        height: 20,
+        height: Ti.UI.SIZE,
         color: "#000",
         title: "clear DB",
         id: "clear"
