@@ -15,11 +15,13 @@ function doAddItem(e){
 
 //fonction de suppression de la liste
 function doClear(e){
-	while(taches.length) { 
-    	taches.at(0).destroy();//suppression des taches une par une
-	}	
-	alert("liste des tâches vidée");
-	taches.fetch();
+	var dialogs = require('alloy/dialogs'); // dependance de la lib de dialogs
+	dialogs.confirm({title: "Supression de toutes les tâches",message:"êtes vous sure ?",yes:"oui",no:"non",callback:function(){
+		while(taches.length) { 
+    		taches.at(0).destroy();//suppression des taches une par une
+    		taches.fetch();
+		}	
+	}});
 }
 
 $.index.open();//creation de la vue index

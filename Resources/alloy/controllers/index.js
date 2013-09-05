@@ -28,9 +28,19 @@ function Controller() {
         taches.fetch();
     }
     function doClear() {
-        while (taches.length) taches.at(0).destroy();
-        alert("liste des tâches vidée");
-        taches.fetch();
+        var dialogs = require("alloy/dialogs");
+        dialogs.confirm({
+            title: "Supression de toutes les tâches",
+            message: "êtes vous sure ?",
+            yes: "oui",
+            no: "non",
+            callback: function() {
+                while (taches.length) {
+                    taches.at(0).destroy();
+                    taches.fetch();
+                }
+            }
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
