@@ -16,7 +16,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.tacheRow = Ti.UI.createTableViewRow({
-        height: Ti.UI.SIZE,
+        height: 44,
         id: "tacheRow"
     });
     $.__views.tacheRow && $.addTopLevelView($.__views.tacheRow);

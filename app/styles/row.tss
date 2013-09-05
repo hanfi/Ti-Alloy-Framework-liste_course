@@ -9,5 +9,5 @@
 	width: 24,
 },
 "#tacheRow" : {
-	height: Ti.UI.SIZE,
+	height: 44,
 }
