@@ -23,6 +23,8 @@ function Controller() {
         };
         var tache = Alloy.createModel("tache", data);
         tache.save();
+        $.itemField.value = "";
+        $.itemField.blur();
         taches.fetch();
     }
     function doClear() {

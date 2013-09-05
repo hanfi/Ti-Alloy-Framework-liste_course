@@ -8,6 +8,8 @@ function doAddItem(e){
 	"done": 0};
 	var tache = Alloy.createModel('tache', data); //creation de l'instance du model 
 	tache.save(); //persist de l'objet en base de données
+	$.itemField.value = "";//reset de la valeure du champ text
+	$.itemField.blur(); //de-focus du champs pour faire disparaitre le clavier des device tactiles 
 	taches.fetch();//synchronisation de la collection avec la base de données pour mise à jour du tableView
 }
 
