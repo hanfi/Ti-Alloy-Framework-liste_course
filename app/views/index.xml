@@ -1,8 +1,11 @@
 <Alloy>
+	<Collection src="tache"/>
 	<Window class="container">
-		<TextField id="itemField" hintText="Ajouter un element ?"></TextField>
+		<TextField id="itemField" hintText="Ajouter un element ?" onReturn="doAddItem"></TextField>
 		<Button id="add" onClick="doAddItem">Ajouter Tâche</Button>
-		<Button id="list" onClick="doShowList">Liste des Tâches</Button>
 		<Button id="clear" onClick="doClear">Supprimer toutes les taches</Button>
+		<TableView id="table" dataCollection="tache">
+			<Require src="row"></Require>
+        </TableView>
 	</Window>
 </Alloy>

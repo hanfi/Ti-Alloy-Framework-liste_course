@@ -1,4 +1,21 @@
 function Controller() {
+    function __alloyId8() {
+        __alloyId8.opts || {};
+        var models = __alloyId7.models;
+        var len = models.length;
+        var rows = [];
+        for (var i = 0; len > i; i++) {
+            var __alloyId5 = models[i];
+            __alloyId5.__transform = {};
+            var __alloyId6 = Alloy.createController("row", {
+                $model: __alloyId5
+            });
+            rows.push(__alloyId6.getViewEx({
+                recurse: true
+            }));
+        }
+        $.__views.table.setData(rows);
+    }
     function doAddItem() {
         var data = {
             label: $.itemField.value,
@@ -6,20 +23,12 @@ function Controller() {
         };
         var tache = Alloy.createModel("tache", data);
         tache.save();
-        alert($.itemField.value + " a été ajouté a la liste");
-    }
-    function doShowList() {
-        var taches = Alloy.createCollection("tache");
         taches.fetch();
-        taches.each(function(tache) {
-            alert("la tache " + tache.get("label") + " est " + (tache.get("done") ? "faite" : "en cours"));
-        });
     }
     function doClear() {
-        var taches = Alloy.createCollection("tache");
-        taches.fetch();
         while (taches.length) taches.at(0).destroy();
         alert("liste des tâches vidée");
+        taches.fetch();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -29,6 +38,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
+    Alloy.Collections.instance("tache");
     $.__views.index = Ti.UI.createWindow({
         backgroundColor: "#FFF",
         id: "index"
@@ -43,6 +53,7 @@ function Controller() {
         hintText: "Ajouter un element ?"
     });
     $.__views.index.add($.__views.itemField);
+    doAddItem ? $.__views.itemField.addEventListener("return", doAddItem) : __defers["$.__views.itemField!return!doAddItem"] = true;
     $.__views.add = Ti.UI.createButton({
         top: "50dp",
         width: Ti.UI.SIZE,
@@ -53,18 +64,8 @@ function Controller() {
     });
     $.__views.index.add($.__views.add);
     doAddItem ? $.__views.add.addEventListener("click", doAddItem) : __defers["$.__views.add!click!doAddItem"] = true;
-    $.__views.list = Ti.UI.createButton({
-        top: "100dp",
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        title: "Liste des Tâches",
-        id: "list"
-    });
-    $.__views.index.add($.__views.list);
-    doShowList ? $.__views.list.addEventListener("click", doShowList) : __defers["$.__views.list!click!doShowList"] = true;
     $.__views.clear = Ti.UI.createButton({
-        top: "150dp",
+        top: "100dp",
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
@@ -73,11 +74,22 @@ function Controller() {
     });
     $.__views.index.add($.__views.clear);
     doClear ? $.__views.clear.addEventListener("click", doClear) : __defers["$.__views.clear!click!doClear"] = true;
-    exports.destroy = function() {};
+    $.__views.table = Ti.UI.createTableView({
+        top: "150dp",
+        id: "table"
+    });
+    $.__views.index.add($.__views.table);
+    var __alloyId7 = Alloy.Collections["tache"] || tache;
+    __alloyId7.on("fetch destroy change add remove reset", __alloyId8);
+    exports.destroy = function() {
+        __alloyId7.off("fetch destroy change add remove reset", __alloyId8);
+    };
     _.extend($, $.__views);
+    var taches = Alloy.Collections.instance("tache");
+    taches.fetch();
     $.index.open();
+    __defers["$.__views.itemField!return!doAddItem"] && $.__views.itemField.addEventListener("return", doAddItem);
     __defers["$.__views.add!click!doAddItem"] && $.__views.add.addEventListener("click", doAddItem);
-    __defers["$.__views.list!click!doShowList"] && $.__views.list.addEventListener("click", doShowList);
     __defers["$.__views.clear!click!doClear"] && $.__views.clear.addEventListener("click", doClear);
     _.extend($, exports);
 }

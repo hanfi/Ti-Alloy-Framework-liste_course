@@ -1,0 +1,7 @@
+<Alloy>
+    <TableViewRow id="tacheRow">
+    	<ImageView id="check" onClick="toggleDone"></ImageView>
+		<Label text="{label}"></Label>
+		<ImageView id="trash" image="/trash_recyclebin_empty_closed.png" onClick="removeTask"></ImageView>
+	</TableViewRow>
+</Alloy>

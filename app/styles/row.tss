@@ -1,0 +1,13 @@
+"#check" : {
+	left: 5,
+	height: 24,
+	width: 24,
+},
+"#trash" : {
+	right: 5,
+	height: 24,
+	width: 24,
+},
+"#tacheRow" : {
+	height: Ti.UI.SIZE,
+}
