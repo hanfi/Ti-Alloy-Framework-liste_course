@@ -19,7 +19,7 @@ function Controller() {
     function doAddItem() {
         var data = {
             label: $.itemField.value,
-            done: false
+            done: 0
         };
         var tache = Alloy.createModel("tache", data);
         tache.save();
