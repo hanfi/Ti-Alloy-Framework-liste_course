@@ -6,7 +6,7 @@ function Controller() {
         };
         var tache = Alloy.createModel("tache", data);
         tache.save();
-        alert($.itemField.value + " has been added");
+        alert($.itemField.value + " a été ajouté a la liste");
     }
     function doShowList() {
         var taches = Alloy.createCollection("tache");
@@ -19,7 +19,7 @@ function Controller() {
         var taches = Alloy.createCollection("tache");
         taches.fetch();
         while (taches.length) taches.at(0).destroy();
-        alert("data cleared");
+        alert("liste des tâches vidée");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -48,7 +48,7 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        title: "add item",
+        title: "Ajouter Tâche",
         id: "add"
     });
     $.__views.index.add($.__views.add);
@@ -58,7 +58,7 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        title: "show list",
+        title: "Liste des Tâches",
         id: "list"
     });
     $.__views.index.add($.__views.list);
@@ -68,7 +68,7 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        title: "clear DB",
+        title: "Supprimer toutes les taches",
         id: "clear"
     });
     $.__views.index.add($.__views.clear);
